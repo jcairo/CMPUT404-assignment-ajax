@@ -22,7 +22,7 @@
 
 
 import flask
-from flask import Flask, request, redirect, send_from_directory, url_for
+from flask import Flask, request, redirect, send_from_directory, url_for, jsonify
 import json
 app = Flask(__name__)
 app.debug = True
@@ -61,7 +61,7 @@ myWorld = World()
 
 # I give this to you, this is how you get the raw body/data portion of a post in flask
 # this should come with flask but whatever, it's not my project.
-def flask_post_json():
+def flask_post_json(request):
     '''Ah the joys of frameworks! They do so much work for you
        that they get in the way of sane operation!'''
     if (request.json != None):
@@ -84,7 +84,13 @@ def index():
 @app.route("/entity/<entity>", methods=['POST','PUT'])
 def update(entity):
     '''update the entities via this interface'''
-    return None
+    entity_data = flask_post_json(request)
+    if request.method == 'POST':
+        myWorld.set(entity, entity_data)
+    if request.method == 'PUT':
+        for key, value in entity_data.iteritems():
+            myWorld.update(entity, key, value)
+    return jsonify(myWorld.get(entity))
 
 @app.route("/world", methods=['POST','GET'])
 def world():
@@ -94,7 +100,8 @@ def world():
 @app.route("/entity/<entity>")
 def get_entity(entity):
     '''This is the GET version of the entity interface, return a representation of the entity'''
-    return None
+    # if the entity doesn't exist return an empty json object
+    return jsonify(**myWorld.get(entity))
 
 @app.route("/clear", methods=['POST','GET'])
 def clear():
