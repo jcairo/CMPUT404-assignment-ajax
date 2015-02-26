@@ -95,6 +95,7 @@ def update(entity):
 @app.route("/world", methods=['POST','GET'])
 def world():
     '''you should probably return the world here'''
+    return jsonify(myWorld.world())
     return None
 
 @app.route("/entity/<entity>")
@@ -106,7 +107,7 @@ def get_entity(entity):
 @app.route("/clear", methods=['POST','GET'])
 def clear():
     '''Clear the world out!'''
-    return None
-
+    myWorld.clear()
+    return jsonify(myWorld.world())
 if __name__ == "__main__":
     app.run()
