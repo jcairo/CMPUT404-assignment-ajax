@@ -76,7 +76,7 @@ def hello():
     '''Return something coherent here.. perhaps redirect to /static/index.html '''
     return redirect(url_for('index'))
 
-@app.route("/index.html")
+@app.route("/static/index.html")
 def index():
     '''Index.html'''
     return send_from_directory('static', filename='index.html')
@@ -96,7 +96,6 @@ def update(entity):
 def world():
     '''you should probably return the world here'''
     return jsonify(myWorld.world())
-    return None
 
 @app.route("/entity/<entity>")
 def get_entity(entity):
