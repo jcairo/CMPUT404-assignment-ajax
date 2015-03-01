@@ -95,6 +95,7 @@ def update(entity):
 @app.route("/world", methods=['POST','GET'])
 def world():
     '''you should probably return the world here'''
+    print len(myWorld.world())
     return jsonify(myWorld.world())
 
 @app.route("/entity/<entity>")
