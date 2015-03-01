@@ -1,10 +1,8 @@
-Based on a forked project by Abram Hindle.
-Updated server and index files to fulfil assignment requirements.
-Original licensing applies.
+Based on a forked project by Abram Hindle.  
+Updated server and index files to fulfil assignment requirements.  
 
-Jonathan Cairo
-March 1, 2015
-==============================
+Jonathan Cairo  
+March 1, 2015  
 
 
 CMPUT404-assignment-ajax
