@@ -64,7 +64,7 @@ world = {};
 //XXX: TODO Make this prettier!
 function drawCircle(context,entity) {
     context.beginPath();
-    context.lineWidth = 5;
+    context.lineWidth = 2;
     var x = entity["x"];
     var y = entity["y"];
     //moveTo(x,y);
@@ -84,7 +84,9 @@ function drawCircle(context,entity) {
         context.shadowOffsetX = 1;
         context.shadowOffsetY = 1;
     }
-
+    if (!entity['startpoint'] && !entity['endpoint']){
+        context.strokeStyle = 'black';
+    }
     context.fill();
     context.stroke();
 
